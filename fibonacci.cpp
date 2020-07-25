@@ -21,6 +21,7 @@ int fibbo_normal (int n) {
     return fibbo_normal(n-1) + fibbo_normal(n-1);
 }
 
+// Using tail recursion
 int fibbo_tail (int n, int a = 0, int b = 1) {
     if (n == 0) 
         return a; 
@@ -29,6 +30,7 @@ int fibbo_tail (int n, int a = 0, int b = 1) {
     return fibbo_tail(n - 1, b, a + b);
 }
 
+//Memoization using vectors
 int fibbo_memo_vector (int n) {
     std::vector<int> acc(n+2);
     acc[0] = 0;
@@ -40,6 +42,8 @@ int fibbo_memo_vector (int n) {
     return acc[n];
 }
 
+//Simple loop
+//Seems to be fastest
 int fibbo_loop (int n) {
     int a = 0, b = 1, c, i; 
     if( n == 0) return a; 
@@ -64,9 +68,11 @@ int main () {
     // fibbo_memo(number, &memo);
     // fibbo_tail(number);
     // fibbo_normal(number);
+    
     //** fastest for 1000000
     // fibbo_loop(number); 
     //** fastest
+    
     // fibbo_memo_vector(number);
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start); 
